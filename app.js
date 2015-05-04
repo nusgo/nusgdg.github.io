@@ -96,42 +96,53 @@ function placeMarker(location) {
 
 	$("#submit").click(function() {
 		if (isLogin == false){
+			$('#prompt').animate({
+					height: "0px"
+				}, 600, function(){
+			});
+			$('#prompt').fadeOut({queue: false, duration: 'slow'});
 			$('#loginPrompt').fadeIn({queue: false, duration: 'slow'});
 			$('#loginPrompt').animate({
 					height: "300px"
 				}, 600, function(){
 			});
-		}
-		numMarkers++;
-		$('#markerCount').html("Number of people available: " + numMarkers);
-	    var mealPreference = $('input[name=meal]:checked').val();
-	    var message = $('input[name=message]').val();
-	    $('#prompt').animate({
-				height: "0px"
-			}, 600, function(){
-		});
-		$('#prompt').fadeOut({queue: false, duration: 'slow'});
-		$('#promptBackground').fadeOut(600);
-		var marker = new google.maps.Marker({
-			position: location,
-			map: map,
-			optimized: false,
-			icon: 'sprites.gif'
-		});
-		var infowindow = new google.maps.InfoWindow({
-			content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng() + '<br>Let\'s have <b>' + mealPreference + '</b>!'
-			+ '<br>"' + message + '"'
-			+ '<br><div id = "deleteMarker"><b>Delete Marker</b></div>'
-		});
-		google.maps.event.addListener(marker,'click',function(){
-			infowindow.open(map,marker);
-			$('#deleteMarker').click(function(){
+		} else {
+			numMarkers++;
+			$('#markerCount').html("Number of people available: " + numMarkers);
+		    var mealPreference = $('input[name=meal]:checked').val();
+		    var message = $('input[name=message]').val();
+		    $('#prompt').animate({
+					height: "0px"
+				}, 600, function(){
+			});
+			$('#prompt').fadeOut({queue: false, duration: 'slow'});
+			$('#loginPrompt').animate({
+					height: "0px"
+				}, 600, function(){
+			});
+			$('#loginPrompt').fadeOut({queue: false, duration: 'slow'});
+			$('#promptBackground').fadeOut(600);
+			var marker = new google.maps.Marker({
+				position: location,
+				map: map,
+				optimized: false,
+				icon: 'sprites.gif'
+			});
+			var infowindow = new google.maps.InfoWindow({
+				content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng() + '<br>Let\'s have <b>' + mealPreference + '</b>!'
+				+ '<br>"' + message + '"'
+				+ '<br><div id = "deleteMarker"><b>Delete Marker</b></div>'
+			});
+			google.maps.event.addListener(marker,'click',function(){
+				infowindow.open(map,marker);
+				$('#deleteMarker').click(function(){
+					marker.setMap(null);
+				});
+			});
+			google.maps.event.addListener(marker,'rightclick',function(event){
 				marker.setMap(null);
 			});
-		});
-		google.maps.event.addListener(marker,'rightclick',function(event){
-			marker.setMap(null);
-		});
+		}
 	});
 
 	//due to change. After every click, send to datastore to update
