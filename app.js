@@ -2,6 +2,7 @@ var map;
 var nus = new google.maps.LatLng(1.2956, 103.7767);
 var markers = [];
 var numMarkers = 0;
+var isLogin = false;
 
 function initialize(){
 	
@@ -94,6 +95,13 @@ function placeMarker(location) {
 	});
 
 	$("#submit").click(function() {
+		if (isLogin == false){
+			$('#loginPrompt').fadeIn({queue: false, duration: 'slow'});
+			$('#loginPrompt').animate({
+					height: "300px"
+				}, 600, function(){
+			});
+		}
 		numMarkers++;
 		$('#markerCount').html("Number of people available: " + numMarkers);
 	    var mealPreference = $('input[name=meal]:checked').val();
@@ -193,14 +201,17 @@ function disableEnterKey(){
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      isLogin = true;
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
+      isLogin = false;
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
+      isLogin = false;
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }

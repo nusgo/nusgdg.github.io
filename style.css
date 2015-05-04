@@ -78,6 +78,18 @@ body {
 	z-index: 10;
 }
 
+#loginPrompt{
+	background-color: white;
+	height: 0px;
+	width: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	z-index: 10;
+}
+
 #promptBackground{
 	display: none;
 	background-color: black;

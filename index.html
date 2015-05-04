@@ -41,6 +41,11 @@
 					<div id = "submit"><b>RollingGO!</b></div>
 				</form>
 			</div>
+      <div id = "loginPrompt">
+        <h1 style = "text-align: center;">Please login through Facebook</h1>
+        <fb:login-button id = "loginButton" scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+      </div>
 			<div class = "row">
 				<div class = "col-md-8">
 					<br>
@@ -50,8 +55,6 @@
 				<br>
 				<br>
 				<div id="homeDescription" class = "col-md-4">
-          <fb:login-button id = "loginButton" scope="public_profile,email" onlogin="checkLoginState();">
-          </fb:login-button>
           <div id = "status"></div>
 					<h2>Looking for a meal buddy?</h2>
 					<h2>Wanna make new friends?</h2>
