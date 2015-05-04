@@ -106,7 +106,7 @@ function placeMarker(location) {
 					height: "300px"
 				}, 600, function(){
 			});
-		} else {
+		}
 			numMarkers++;
 			$('#markerCount').html("Number of people available: " + numMarkers);
 		    var mealPreference = $('input[name=meal]:checked').val();
@@ -142,7 +142,6 @@ function placeMarker(location) {
 			google.maps.event.addListener(marker,'rightclick',function(event){
 				marker.setMap(null);
 			});
-		}
 	});
 
 	//due to change. After every click, send to datastore to update
