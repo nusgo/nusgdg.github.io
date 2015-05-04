@@ -106,13 +106,6 @@ function placeMarker(location) {
 					height: "300px"
 				}, 600, function(){
 			});
-			$("#loginButton").click(function(){
-				$('#loginPrompt').animate({
-						height: "0px"
-					}, 600, function(){
-				});
-				$('#loginPrompt').fadeOut({queue: false, duration: 'slow'});
-			});
 		} else {
 			numMarkers++;
 			$('#markerCount').html("Number of people available: " + numMarkers);
@@ -285,4 +278,9 @@ function disableEnterKey(){
       document.getElementById('status').innerHTML =
         'Hello, ' + response.name + '!';
     });
+    $('#loginPrompt').animate({
+			height: "0px"
+		}, 600, function(){
+	});
+	$('#loginPrompt').fadeOut({queue: false, duration: 'slow'});
   }
