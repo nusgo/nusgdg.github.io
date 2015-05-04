@@ -106,7 +106,14 @@ function placeMarker(location) {
 					height: "300px"
 				}, 600, function(){
 			});
-		}
+			$("#loginButton").click(function(){
+				$('#loginPrompt').animate({
+						height: "0px"
+					}, 600, function(){
+				});
+				$('#loginPrompt').fadeOut({queue: false, duration: 'slow'});
+			});
+		} else {
 			numMarkers++;
 			$('#markerCount').html("Number of people available: " + numMarkers);
 		    var mealPreference = $('input[name=meal]:checked').val();
@@ -116,11 +123,6 @@ function placeMarker(location) {
 				}, 600, function(){
 			});
 			$('#prompt').fadeOut({queue: false, duration: 'slow'});
-			$('#loginPrompt').animate({
-					height: "0px"
-				}, 600, function(){
-			});
-			$('#loginPrompt').fadeOut({queue: false, duration: 'slow'});
 			$('#promptBackground').fadeOut(600);
 			var marker = new google.maps.Marker({
 				position: location,
@@ -142,6 +144,7 @@ function placeMarker(location) {
 			google.maps.event.addListener(marker,'rightclick',function(event){
 				marker.setMap(null);
 			});
+		}
 	});
 
 	//due to change. After every click, send to datastore to update
